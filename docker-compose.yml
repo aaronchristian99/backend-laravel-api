@@ -2,7 +2,7 @@ version: '3'
 services:
     backend:
         build:
-            context: ./
+            context: .
             dockerfile: Dockerfile
         ports:
             - 8000:8000
@@ -16,9 +16,7 @@ services:
         ports:
             - 3306:3306
         environment:
-            MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: backend-laravel-api
-            MYSQL_USER: root
-            MYSQL_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: root
         volumes:
-            - ./mysql:/var/lib/mysql
+            - ./storage/mysql:/var/lib/mysql

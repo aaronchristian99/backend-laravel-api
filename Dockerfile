@@ -1,5 +1,5 @@
 # Base image
-FROM php:7.4-apache
+FROM php:8.2-apache
 
 # Set the working directory
 WORKDIR /var/www/html
@@ -23,10 +23,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install project dependencies
 RUN composer install
 
-RUN composer update
-
 # Run migrations and seeds
-RUN php artisan migrate --seed
+CMD ["php", "artisan", "migrate", "--seed"]
+CMD ["yes"]
 
 # Start the server
 CMD ["php", "artisan", "serve", "--host=0.0.0.0"]
