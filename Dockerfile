@@ -4,6 +4,9 @@ FROM php:7.4-apache
 # Set the working directory
 WORKDIR /var/www/html
 
+# Set environment variable for non-interactive session
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
 # Copy the project files to the container
 COPY . /var/www/html
 
@@ -19,6 +22,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Install project dependencies
 RUN composer install
+
+RUN composer update
 
 # Run migrations and seeds
 RUN php artisan migrate --seed

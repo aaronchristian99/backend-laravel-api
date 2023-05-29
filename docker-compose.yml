@@ -2,12 +2,12 @@ version: '3'
 services:
     backend:
         build:
-            context: ./backend-laravel-api
+            context: ./
             dockerfile: Dockerfile
         ports:
             - 8000:8000
         volumes:
-            - ./backend-laravel-api:/var/www/html
+            - ./:/var/www/html
         depends_on:
             - database
 
